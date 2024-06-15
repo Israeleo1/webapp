@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to the Chat App!</h1>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+    <form action="/" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit" name="create" value="true">Create Room</button>
+        <button type="submit" name="join" value="true">Join Room</button>
+        <input type="text" id="code" name="code" placeholder="Enter Room Code (if joining)">
+        <label for="public">Public:</label>
+        <input type="checkbox" id="public" name="public" value="true">
+    </form>
+
+    <!-- Display the list of available public rooms -->
+    <h2>Available Public Rooms:</h2>
+    <ul>
+        {% for room in public_room_list %}
+            <li>Room Code: {{ room.code }} | Created by: {{ room.creator }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
